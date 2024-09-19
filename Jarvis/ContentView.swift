@@ -9,18 +9,23 @@ import BankaiCore
 import Combine
 import SwiftUI
 
+enum JarvisError: Error {
+    case stringError(String)
+    case nestedError(any Error)
+}
 
-func voidCommand() -> AnyPublisher<String, Never> {
+func voidCommand() -> AnyPublisher<String, Error> {
     return .create { emit in
         emit(.complete)
         return AnyCancellable { }
     }
 }
 
-func everySecondTextCommand() -> AnyPublisher<String, Never> {
+func everySecondTextCommand() -> AnyPublisher<String, Error> {
     return 60
         .secondsCounter()
         .map { "Ticked for \($0) seconds" }
+        .setFailureType(to: Error.self)
         .eraseToAnyPublisher()
 }
 
@@ -51,12 +56,14 @@ enum CommandScreen: CaseIterable {
         }
     }
     
-    var flow: AnyPublisher<String, Never> {
+    var flow: AnyPublisher<String, Error> {
         switch self {
+        case .enablePermissions:
+            return enablePermissionsCommand()
         case .duplicateCorporates:
             return duplicateCorporatesCommand()
         default:
-            return voidCommand()
+            return everySecondTextCommand()
         }
     }
 }
@@ -64,7 +71,7 @@ enum CommandScreen: CaseIterable {
 struct ContentView: View {
     
     @State var columnVisibility: NavigationSplitViewVisibility = .doubleColumn
-    @State var currentCommand: CommandScreen = .duplicateCorporates
+    @State var currentCommand: CommandScreen = .enablePermissions
     
     var body: some View {
         NavigationSplitView(columnVisibility: $columnVisibility) {

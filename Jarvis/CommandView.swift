@@ -10,7 +10,7 @@ import Combine
 
 struct CommandView: View {
     
-    var commandFlow: AnyPublisher<String, Never>
+    var commandFlow: AnyPublisher<String, Error>
     
     @State var lines: [String] = [
         "To be started..."
@@ -38,6 +38,9 @@ struct CommandView: View {
                 Button(action: {
                     commandFlow
                         .subscribe(on: DispatchQueue.main)
+                        .catch {
+                            Just("ERROR: \($0.localizedDescription)")
+                        }
                         .sink { lines.append($0) }
                         .store(in: &cancellables)
                 }) {

@@ -8,7 +8,7 @@
 import BankaiCore
 import Combine
 
-func duplicateCorporatesCommand() -> AnyPublisher<String, Never> {
+func duplicateCorporatesCommand() -> AnyPublisher<String, Error> {
     .create({ emit in
         emit(.value("d"))
         
