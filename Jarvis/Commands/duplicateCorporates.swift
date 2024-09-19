@@ -10,7 +10,7 @@ import Combine
 import CombineExt
 import EventKit
 
-func fetchEvents(usingStore store: EKEventStore) -> [EKEvent] {
+private func fetchEvents(usingStore store: EKEventStore) -> [EKEvent] {
     let startOfToday = Calendar.current.startOfDay(for: Date())
     let endOfToday = Calendar.current.date(
         byAdding: .day,

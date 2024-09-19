@@ -26,6 +26,19 @@ extension EKEvent {
     }
 }
 
+func fetchEventsForDay(startingAt startRef: Date, usingStore store: EKEventStore) -> [EKEvent] {
+    let startOfToday = Calendar.current.startOfDay(for: startRef)
+    let endOfToday = Calendar.current.date(
+        byAdding: .day,
+        value: 1,
+        to: startOfToday
+    ) ?? startOfToday
+    let predicate = store.predicateForEvents(withStart: startOfToday,
+                                             end: endOfToday,
+                                             calendars: nil)
+    return store.events(matching: predicate)
+}
+
 private func timebox(_ n: Int,
                      labeled label: String,
                      downSince since: Date = Date(),
@@ -118,7 +131,7 @@ func slotPomosCommand(referenceDate: Date = Date()) -> CommandFlowBuilder {
     return { config in
         .create { receiver in
             let store = EKEventStore()
-            let presentEvents = fetchEvents(usingStore: store)
+            let presentEvents = fetchEventsForDay(startingAt: referenceDate, usingStore: store)
             receiver.send("Found \(presentEvents.count) present blocking events.")
             receiver.send("Blocking Events: -----------------------------")
             for (index, event) in presentEvents.enumerated() {
