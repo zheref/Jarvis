@@ -27,6 +27,7 @@
 		2B01A1F82C9BE9F50001DA87 /* Jarvis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jarvis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B01A2092C9BE9F60001DA87 /* JarvisTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JarvisTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B01A2132C9BE9F60001DA87 /* JarvisUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JarvisUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B01A2262C9BEAA50001DA87 /* BankaiCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BankaiCore; path = ../Bankai/Swift/BankaiCore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +76,7 @@
 		2B01A1EF2C9BE9F50001DA87 = {
 			isa = PBXGroup;
 			children = (
+				2B01A2262C9BEAA50001DA87 /* BankaiCore */,
 				2B01A1FA2C9BE9F50001DA87 /* Jarvis */,
 				2B01A20C2C9BE9F60001DA87 /* JarvisTests */,
 				2B01A2162C9BE9F60001DA87 /* JarvisUITests */,
