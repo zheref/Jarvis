@@ -33,6 +33,16 @@ extension EKEvent {
     var seemsCorporate: Bool {
         calendar.title.contains("@") || calendar.source.title.contains("@")
     }
+    
+    func print(_ index: Int, usingPrinter print: (String) -> Void) {
+        if let title = title {
+            if let startDate = startDate, let endDate = endDate {
+                print("(\(index+1)) \(title) \(formatTime(fromDate: startDate)) - \(formatTime(fromDate: endDate)) from \(calendar.title) in \(calendar.source.title)")
+            } else if isAllDay {
+                print("(\(index+1)) \(title) [All Day] from \(calendar.title) in \(calendar.source.title)")
+            }
+        }
+    }
 }
 
 private func areRepresentingSameEvent(_ event1: EKEvent, _ event2: EKEvent) -> Bool {
@@ -63,22 +73,12 @@ func duplicateCorporatesCommand() -> AnyPublisher<String, Error> {
         
         receiver.send("Non Corporate Events: -------------------------------")
         for (index, event) in nonCorporateEvents.enumerated() {
-            if let title = event.title, let startDate = event.startDate, let endDate = event.endDate {
-                receiver
-                    .send(
-                        "(\(index+1)) \(title) \(formatTime(fromDate: startDate)) - \(formatTime(fromDate: endDate)) from \(event.calendar.title) in \(event.calendar.source.title)"
-                    )
-            }
+            event.print(index, usingPrinter: receiver.send)
         }
         
         receiver.send("Corporate Events: -----------------------------------")
         for (index, event) in corporateEvents.enumerated() {
-            if let title = event.title, let startDate = event.startDate, let endDate = event.endDate {
-                receiver
-                    .send(
-                        "(\(index+1)) \(title) \(formatTime(fromDate: startDate)) - \(formatTime(fromDate: endDate)) from \(event.calendar.title) in \(event.calendar.source.title)"
-                    )
-            }
+            event.print(index, usingPrinter: receiver.send)
         }
         
         let candidatesToDuplicate = corporateEvents.filter {
@@ -87,12 +87,7 @@ func duplicateCorporatesCommand() -> AnyPublisher<String, Error> {
         
         receiver.send("Candidates to Duplicate: ------------------------------")
         for (index, event) in candidatesToDuplicate.enumerated() {
-            if let title = event.title, let startDate = event.startDate, let endDate = event.endDate {
-                receiver
-                    .send(
-                        "(\(index+1)) \(title) \(formatTime(fromDate: startDate)) - \(formatTime(fromDate: endDate)) from \(event.calendar.title) in \(event.calendar.source.title)"
-                    )
-            }
+            event.print(index, usingPrinter: receiver.send)
         }
         
         receiver.send(completion: .finished)
