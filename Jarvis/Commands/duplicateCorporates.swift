@@ -43,6 +43,28 @@ extension EKEvent {
             }
         }
     }
+    
+    func createDuplicate(forStore store: EKEventStore) -> EKEvent {
+        let event = EKEvent(eventStore: store)
+        event.title = title
+        event.startDate = startDate
+        event.endDate = endDate
+        event.isAllDay = isAllDay
+        event.notes = notes
+        event.calendar = store.defaultCalendarForNewEvents
+        return event
+    }
+}
+
+private func saveDuplicates(_ duplicates: [EKEvent],
+                            toStore store: EKEventStore,
+                            usingPrinter print: (String) -> Void) throws {
+    for event in duplicates {
+        print("Duplicating event with title: \(event.title ?? "nil")...")
+        try store.save(event, span: .thisEvent)
+    }
+    
+    try store.commit()
 }
 
 private func areRepresentingSameEvent(_ event1: EKEvent, _ event2: EKEvent) -> Bool {
@@ -88,6 +110,16 @@ func duplicateCorporatesCommand() -> AnyPublisher<String, Error> {
         receiver.send("Candidates to Duplicate: ------------------------------")
         for (index, event) in candidatesToDuplicate.enumerated() {
             event.print(index, usingPrinter: receiver.send)
+        }
+        
+        // Actual Duplication
+        let duplicates = candidatesToDuplicate.map {
+            $0.createDuplicate(forStore: store)
+        }
+        do {
+            try saveDuplicates(duplicates, toStore: store, usingPrinter: receiver.send)
+        } catch {
+            receiver.send(completion: .failure(JarvisError.nestedError(error)))
         }
         
         receiver.send(completion: .finished)
