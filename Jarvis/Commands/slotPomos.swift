@@ -67,9 +67,9 @@ private func timebox(_ n: Int,
     var generatedCount = 0
     
     for index in (-1..<sortedEvents.count) {
-        let leadingBoundary = index >= 0 ? sortedEvents[index].endDate : since
+        var leadingBoundary = index >= 0 ? sortedEvents[index].endDate : since
 
-        guard let leadingBoundary else {
+        guard var leadingBoundary else {
             // TODO: Throw error here
             return []
         }
@@ -79,23 +79,27 @@ private func timebox(_ n: Int,
 
         var availableTime = trailingBoundary.timeIntervalSince(leadingBoundary)
 
-        if availableTime >= minDuration {
-            availableTime = availableTime <= maxDuration ? availableTime : maxDuration
-            let availableSegmentsCount = Int(availableTime / minDuration)
+        while availableTime >= minDuration && generatedCount < n {
+            let proposedTime = availableTime <= maxDuration ? availableTime : maxDuration
+            let availableSegmentsCount = Int(proposedTime / minDuration)
             let totalSessionDuration = minDuration * TimeInterval(availableSegmentsCount)
             
             // Slot time
             generatedCount += 1
             let box: EKEvent = .new(
-                title: "\(label) #\(generatedCount) [\(availableSegmentsCount)]",
+                title: "\(label) #\(generatedCount)",
                 start: leadingBoundary,
                 duration: totalSessionDuration,
                 onStore: store
             )
             generatedBoxes.append(box)
-        } else { continue }
+            
+            // Prepare to repeat (if possible)
+            availableTime -= totalSessionDuration
+            leadingBoundary = box.endDate
+        }
         
-        if generatedCount >= n { break }
+        if generatedCount >= n { break } else { continue }
     }
     
     return generatedBoxes
@@ -123,7 +127,7 @@ func slotPomosCommand(referenceDate: Date = Date()) -> CommandFlowBuilder {
             
             let proposedSessionsA = timebox(7,
                                            labeled: "Session A",
-                                           downSince: .startOfDay(from: referenceDate),
+                                           downSince: .businessStartOfDay(from: referenceDate),
                                            within: presentEvents,
                                            minDuration: 30.minutes,
                                            maxDuration: 30.minutes,
@@ -138,7 +142,7 @@ func slotPomosCommand(referenceDate: Date = Date()) -> CommandFlowBuilder {
             
             let proposedSessionsB = timebox(7,
                                            labeled: "Session B",
-                                           downSince: .startOfDay(from: referenceDate),
+                                           downSince: .businessStartOfDay(from: referenceDate),
                                            within: presentEvents + proposedSessionsA,
                                            minDuration: 30.minutes,
                                            maxDuration: 30.minutes,
