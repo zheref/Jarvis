@@ -8,22 +8,28 @@
 import BankaiCore
 import Combine
 import EventKit
+import CombineExt
 
 func enablePermissionsCommand() -> AnyPublisher<String, Error> {
-    .create { (emit: @escaping ((ZEvent<String, Error>) -> Void)) in
+    .create { receiver in
         let eventStore = EKEventStore()
         
+        receiver.send("Requesting permissions...")
         eventStore.requestFullAccessToEvents { granted, error in
             if let error {
-                emit(.failure(JarvisError.nestedError(error)))
+                receiver.send(completion: .failure(
+                    JarvisError.nestedError(error)
+                ))
                 return
             }
             
             if granted {
-                emit(.value("Permission granted."))
-                emit(.complete)
+                receiver.send("Permission granted.")
+                receiver.send(completion: .finished)
             } else {
-                emit(.failure(JarvisError.stringError("Permission Denied")))
+                receiver.send(completion: .failure(
+                    JarvisError.stringError("Permission Denied")
+                ))
             }
         }
         

@@ -15,8 +15,8 @@ enum JarvisError: Error {
 }
 
 func voidCommand() -> AnyPublisher<String, Error> {
-    return .create { emit in
-        emit(.complete)
+    return .create { receiver in
+        receiver.send(completion: .finished)
         return AnyCancellable { }
     }
 }

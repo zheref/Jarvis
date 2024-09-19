@@ -7,11 +7,13 @@
 
 import BankaiCore
 import Combine
+import CombineExt
 
 func duplicateCorporatesCommand() -> AnyPublisher<String, Error> {
-    .create({ emit in
-        emit(.value("d"))
+    .create { receiver in
+        receiver.send("d")
+        receiver.send(completion: .finished)
         
         return AnyCancellable {}
-    })
+    }
 }

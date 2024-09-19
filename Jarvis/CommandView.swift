@@ -41,6 +41,7 @@ struct CommandView: View {
                         .catch {
                             Just("ERROR: \($0.localizedDescription)")
                         }
+                        .print()
                         .sink { lines.append($0) }
                         .store(in: &cancellables)
                 }) {

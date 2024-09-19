@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2B78D8472C9BEB8F00E1E869 /* BankaiCore in Frameworks */ = {isa = PBXBuildFile; productRef = 2B78D8462C9BEB8F00E1E869 /* BankaiCore */; };
+		2B78D8562C9C021100E1E869 /* CombineExt in Frameworks */ = {isa = PBXBuildFile; productRef = 2B78D8552C9C021100E1E869 /* CombineExt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +35,22 @@
 		2B01A2262C9BEAA50001DA87 /* BankaiCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BankaiCore; path = ../Bankai/Swift/BankaiCore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		2B78D8532C9BFF3F00E1E869 /* Exceptions for "Jarvis" folder in "Jarvis" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 2B01A1F72C9BE9F50001DA87 /* Jarvis */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		2B01A1FA2C9BE9F50001DA87 /* Jarvis */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				2B78D8532C9BFF3F00E1E869 /* Exceptions for "Jarvis" folder in "Jarvis" target */,
+			);
 			path = Jarvis;
 			sourceTree = "<group>";
 		};
@@ -57,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B78D8562C9C021100E1E869 /* CombineExt in Frameworks */,
 				2B78D8472C9BEB8F00E1E869 /* BankaiCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,6 +143,7 @@
 			name = Jarvis;
 			packageProductDependencies = (
 				2B78D8462C9BEB8F00E1E869 /* BankaiCore */,
+				2B78D8552C9C021100E1E869 /* CombineExt */,
 			);
 			productName = Jarvis;
 			productReference = 2B01A1F82C9BE9F50001DA87 /* Jarvis.app */;
@@ -211,6 +227,9 @@
 			);
 			mainGroup = 2B01A1EF2C9BE9F50001DA87;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				2B78D8542C9C01C200E1E869 /* XCRemoteSwiftPackageReference "CombineExt" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 2B01A1F92C9BE9F50001DA87 /* Products */;
 			projectDirPath = "";
@@ -417,6 +436,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Jarvis/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -444,6 +464,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Jarvis/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -566,10 +587,26 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		2B78D8542C9C01C200E1E869 /* XCRemoteSwiftPackageReference "CombineExt" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CombineCommunity/CombineExt.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.8.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		2B78D8462C9BEB8F00E1E869 /* BankaiCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BankaiCore;
+		};
+		2B78D8552C9C021100E1E869 /* CombineExt */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B78D8542C9C01C200E1E869 /* XCRemoteSwiftPackageReference "CombineExt" */;
+			productName = CombineExt;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
