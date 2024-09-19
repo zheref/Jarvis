@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		2B78D8472C9BEB8F00E1E869 /* BankaiCore in Frameworks */ = {isa = PBXBuildFile; productRef = 2B78D8462C9BEB8F00E1E869 /* BankaiCore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		2B01A20A2C9BE9F60001DA87 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -53,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B78D8472C9BEB8F00E1E869 /* BankaiCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +85,7 @@
 				2B01A1FA2C9BE9F50001DA87 /* Jarvis */,
 				2B01A20C2C9BE9F60001DA87 /* JarvisTests */,
 				2B01A2162C9BE9F60001DA87 /* JarvisUITests */,
+				2B78D8452C9BEB8F00E1E869 /* Frameworks */,
 				2B01A1F92C9BE9F50001DA87 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,6 +98,13 @@
 				2B01A2132C9BE9F60001DA87 /* JarvisUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		2B78D8452C9BEB8F00E1E869 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -114,6 +127,7 @@
 			);
 			name = Jarvis;
 			packageProductDependencies = (
+				2B78D8462C9BEB8F00E1E869 /* BankaiCore */,
 			);
 			productName = Jarvis;
 			productReference = 2B01A1F82C9BE9F50001DA87 /* Jarvis.app */;
@@ -551,6 +565,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2B78D8462C9BEB8F00E1E869 /* BankaiCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BankaiCore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2B01A1F02C9BE9F50001DA87 /* Project object */;
 }
