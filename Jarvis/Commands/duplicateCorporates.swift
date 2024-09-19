@@ -51,7 +51,16 @@ extension EKEvent {
         event.endDate = endDate
         event.isAllDay = isAllDay
         event.notes = notes
-        event.calendar = store.defaultCalendarForNewEvents
+        event.location = location
+        
+        if let businessCalendar = store.calendars(for: .event).first(
+            where: { $0.title.contains("Business") }
+        ) {
+            event.calendar = businessCalendar
+        } else {
+            event.calendar = store.defaultCalendarForNewEvents
+        }
+        
         return event
     }
 }
