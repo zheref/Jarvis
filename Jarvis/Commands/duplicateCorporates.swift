@@ -10,7 +10,7 @@ import Combine
 import CombineExt
 import EventKit
 
-private func fetchEvents(usingStore store: EKEventStore) -> [EKEvent] {
+func fetchEvents(usingStore store: EKEventStore) -> [EKEvent] {
     let startOfToday = Calendar.current.startOfDay(for: Date())
     let endOfToday = Calendar.current.date(
         byAdding: .day,
@@ -73,6 +73,7 @@ private func saveDuplicates(_ duplicates: [EKEvent],
         try store.save(event, span: .thisEvent)
     }
     
+    print("Beware: Commiting all changes into actual calendar.")
     try store.commit()
 }
 
@@ -122,13 +123,17 @@ func duplicateCorporatesCommand(_ config: CommandFlowConfig) -> CommandFlow {
         }
         
         // Actual Duplication
-        let duplicates = candidatesToDuplicate.map {
-            $0.createDuplicate(forStore: store)
-        }
-        do {
-            try saveDuplicates(duplicates, toStore: store, usingPrinter: receiver.send)
-        } catch {
-            receiver.send(completion: .failure(JarvisError.nestedError(error)))
+        if config.performanceClass == .execution {
+            let duplicates = candidatesToDuplicate.map {
+                $0.createDuplicate(forStore: store)
+            }
+            do {
+                try saveDuplicates(duplicates, toStore: store, usingPrinter: receiver.send)
+            } catch {
+                receiver.send(completion: .failure(JarvisError.nestedError(error)))
+            }
+        } else {
+            receiver.send("Simulation: Actions not performed.")
         }
         
         receiver.send(completion: .finished)

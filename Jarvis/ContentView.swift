@@ -39,6 +39,7 @@ func everySecondTextCommand(_ config: CommandFlowConfig) -> CommandFlow {
 enum CommandScreen: CaseIterable {
     case enablePermissions
     case duplicateCorporates
+    case slotPomos
     case removeAllDuplicates
     case settings
     
@@ -46,6 +47,8 @@ enum CommandScreen: CaseIterable {
         switch self {
         case .enablePermissions: return "Enable Permissions"
         case .duplicateCorporates: return "Duplicate Corporates"
+                .capitalized
+        case .slotPomos: return "Slot Pomos"
                 .capitalized
         case .removeAllDuplicates: return "Remove All Duplicates"
                 .capitalized
@@ -58,6 +61,7 @@ enum CommandScreen: CaseIterable {
         switch self {
         case .enablePermissions: return "lock.circle"
         case .duplicateCorporates: return "person.2.circle"
+        case .slotPomos: return "clock.badge.checkmark"
         case .removeAllDuplicates: return "trash"
         case .settings: return "gearshape"
         }
@@ -69,6 +73,8 @@ enum CommandScreen: CaseIterable {
             return enablePermissionsCommand
         case .duplicateCorporates:
             return duplicateCorporatesCommand
+        case .slotPomos:
+            return slotPomosCommand
         default:
             return everySecondTextCommand
         }
