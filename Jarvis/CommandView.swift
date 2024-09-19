@@ -13,7 +13,7 @@ struct CommandView: View {
     var commandFlow: AnyPublisher<String, Error>
     
     @State var lines: [String] = [
-        "To be started..."
+        "Ready."
     ]
     
     @State var cancellables: Set<AnyCancellable> = []
@@ -32,6 +32,7 @@ struct CommandView: View {
                 Spacer()
             }
         }
+        .defaultScrollAnchor(.bottom)
         .frame(maxWidth: .infinity)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
@@ -42,12 +43,17 @@ struct CommandView: View {
                             Just("ERROR: \($0.localizedDescription)")
                         }
                         .print()
-                        .sink { lines.append($0) }
+                        .sink { _ in lines.append("Completed.") }
+                            receiveValue: { lines.append($0) }
                         .store(in: &cancellables)
                 }) {
                     Image(systemName: "play.fill")
                 }
             }
+        }
+        .onAppear {
+            lines.removeAll()
+            lines.append("Ready.")
         }
     }
     
