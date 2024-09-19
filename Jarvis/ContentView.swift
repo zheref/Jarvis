@@ -92,10 +92,11 @@ struct ContentView: View {
                     }
                 }
             }
+            .navigationSplitViewColumnWidth(min: 200, ideal: 250, max: 300)
+            .navigationSplitViewStyle(ProminentDetailNavigationSplitViewStyle())
         } detail: {
             detailFor(command: currentCommand)
         }
-
     }
     
     @ViewBuilder
