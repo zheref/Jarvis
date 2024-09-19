@@ -18,6 +18,13 @@ struct CommandView: View {
     
     @State var cancellables: Set<AnyCancellable> = []
     
+    var currentTimestamp: String {
+        let currentDate = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm:ss"
+        return formatter.string(from: currentDate)
+    }
+    
     var body: some View {
         ScrollView {
             HStack {
@@ -36,17 +43,19 @@ struct CommandView: View {
         .frame(maxWidth: .infinity)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
-                Button(action: {
+                Button {
                     commandFlow
                         .subscribe(on: DispatchQueue.main)
                         .catch {
-                            Just("ERROR: \($0.localizedDescription)")
+                            Just(
+                                "ERROR: \($0.localizedDescription)"
+                            )
                         }
                         .print()
-                        .sink { _ in lines.append("Completed.") }
-                            receiveValue: { lines.append($0) }
+                        .sink { _ in lines.append("[\(currentTimestamp)] Completed.") }
+                        receiveValue: { lines.append("[\(currentTimestamp)] \($0)") }
                         .store(in: &cancellables)
-                }) {
+                } label: {
                     Image(systemName: "play.fill")
                 }
             }
