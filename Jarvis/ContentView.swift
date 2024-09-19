@@ -39,7 +39,8 @@ func everySecondTextCommand(_ config: CommandFlowConfig) -> CommandFlow {
 enum CommandScreen: CaseIterable {
     case enablePermissions
     case duplicateCorporates
-    case slotPomos
+    case slotTodayPomos
+    case slotTomorrowPomos
     case removeAllDuplicates
     case settings
     
@@ -48,8 +49,9 @@ enum CommandScreen: CaseIterable {
         case .enablePermissions: return "Enable Permissions"
         case .duplicateCorporates: return "Duplicate Corporates"
                 .capitalized
-        case .slotPomos: return "Slot Pomos"
+        case .slotTodayPomos: return "Slot Today's Pomos"
                 .capitalized
+        case .slotTomorrowPomos: return "Slot Tomorrow's Pomos"
         case .removeAllDuplicates: return "Remove All Duplicates"
                 .capitalized
         case .settings: return "Settings"
@@ -61,7 +63,8 @@ enum CommandScreen: CaseIterable {
         switch self {
         case .enablePermissions: return "lock.circle"
         case .duplicateCorporates: return "person.2.circle"
-        case .slotPomos: return "clock.badge.checkmark"
+        case .slotTodayPomos: return "clock.badge.checkmark"
+        case .slotTomorrowPomos: return "calendar.badge.clock"
         case .removeAllDuplicates: return "trash"
         case .settings: return "gearshape"
         }
@@ -73,8 +76,10 @@ enum CommandScreen: CaseIterable {
             return enablePermissionsCommand
         case .duplicateCorporates:
             return duplicateCorporatesCommand
-        case .slotPomos:
-            return slotPomosCommand
+        case .slotTodayPomos:
+            return slotPomosCommand(referenceDate: Date())
+        case .slotTomorrowPomos:
+            return slotPomosCommand(referenceDate: Date().oneDayOut)
         default:
             return everySecondTextCommand
         }

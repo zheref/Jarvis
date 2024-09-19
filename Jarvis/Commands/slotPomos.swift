@@ -101,42 +101,67 @@ private func timebox(_ n: Int,
     return generatedBoxes
 }
 
-func slotPomosCommand(_ config: CommandFlowConfig) -> CommandFlow {
-    .create { receiver in
-        let store = EKEventStore()
-        let presentEvents = fetchEvents(usingStore: store)
-        receiver.send("Found \(presentEvents.count) present blocking events.")
-        
-        var proposedSessions = timebox(7,
-                                       labeled: "Session",
-                                       downSince: Date(),
-                                       within: presentEvents,
-                                       minDuration: 30.minutes,
-                                       maxDuration: 90.minutes,
-                                       upUntil: .endOfDay,
-                                       onStore: store)
-        
-        receiver.send("Proposed Sessions: ----------------------------")
-        for (index, session) in proposedSessions.enumerated() {
-            session.calendar = store.defaultCalendarForNewEvents
-            session.print(index, usingPrinter: receiver.send)
-        }
-        
-        if config.performanceClass == .execution {
-            do {
-                for session in proposedSessions {
-                    receiver.send("Saving proposed session: \(session.title ?? "nil") to real calendar...")
-                    try store.save(session, span: .thisEvent)
-                }
-                receiver.send("Beware: Commiting all changes into real calendar.")
-                try store.commit()
-            } catch {
-                receiver.send(completion: .failure(JarvisError.nestedError(error)))
+private func save(sessions: [EKEvent], onto store: EKEventStore, usingPrinter print: (String) -> Void) throws {
+    for session in sessions {
+        print("Saving proposed session: \(session.title ?? "nil") to real calendar...")
+        try store.save(session, span: .thisEvent)
+    }
+    print("Beware: Commiting all changes into real calendar.")
+    try store.commit()
+}
+
+func slotPomosCommand(referenceDate: Date = Date()) -> CommandFlowBuilder {
+    return { config in
+        .create { receiver in
+            let store = EKEventStore()
+            let presentEvents = fetchEvents(usingStore: store)
+            receiver.send("Found \(presentEvents.count) present blocking events.")
+            receiver.send("Blocking Events: -----------------------------")
+            for (index, event) in presentEvents.enumerated() {
+                event.print(index, usingPrinter: receiver.send)
             }
-        } else {
-            receiver.send("Simulation: Actions not performed.")
+            
+            let proposedSessionsA = timebox(7,
+                                           labeled: "Session A",
+                                           downSince: .startOfDay(from: referenceDate),
+                                           within: presentEvents,
+                                           minDuration: 30.minutes,
+                                           maxDuration: 30.minutes,
+                                           upUntil: .endOfDay(from: referenceDate),
+                                           onStore: store)
+            
+            receiver.send("Proposed Sessions for A: ----------------------------")
+            for (index, session) in proposedSessionsA.enumerated() {
+                session.calendar = store.defaultCalendarForNewEvents
+                session.print(index, usingPrinter: receiver.send)
+            }
+            
+            let proposedSessionsB = timebox(7,
+                                           labeled: "Session B",
+                                           downSince: .startOfDay(from: referenceDate),
+                                           within: presentEvents + proposedSessionsA,
+                                           minDuration: 30.minutes,
+                                           maxDuration: 30.minutes,
+                                           upUntil: .endOfDay(from: referenceDate),
+                                           onStore: store)
+            
+            receiver.send("Proposed Sessions for B: ----------------------------")
+            for (index, session) in proposedSessionsB.enumerated() {
+                session.calendar = store.defaultCalendarForNewEvents
+                session.print(index, usingPrinter: receiver.send)
+            }
+            
+            if config.performanceClass == .execution {
+                do {
+                    try save(sessions: proposedSessionsA + proposedSessionsB, onto: store, usingPrinter: receiver.send)
+                } catch {
+                    receiver.send(completion: .failure(JarvisError.nestedError(error)))
+                }
+            } else {
+                receiver.send("Simulation: Actions not performed.")
+            }
+            
+            return AnyCancellable { }
         }
-        
-        return AnyCancellable { }
     }
 }
