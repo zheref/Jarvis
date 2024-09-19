@@ -28,7 +28,7 @@ func voidCommand() -> AnyPublisher<String, Error> {
     }
 }
 
-func everySecondTextCommand() -> AnyPublisher<String, Error> {
+func everySecondTextCommand(_ config: CommandFlowConfig) -> CommandFlow {
     return 60
         .secondsCounter()
         .map { "Ticked for \($0) seconds" }
@@ -63,14 +63,14 @@ enum CommandScreen: CaseIterable {
         }
     }
     
-    var flow: AnyPublisher<String, Error> {
+    var flow: CommandFlowBuilder {
         switch self {
         case .enablePermissions:
-            return enablePermissionsCommand()
+            return enablePermissionsCommand
         case .duplicateCorporates:
-            return duplicateCorporatesCommand()
+            return duplicateCorporatesCommand
         default:
-            return everySecondTextCommand()
+            return everySecondTextCommand
         }
     }
 }
@@ -101,7 +101,7 @@ struct ContentView: View {
     
     @ViewBuilder
     func detailFor(command: CommandScreen) -> some View {
-        CommandView(commandFlow: command.flow)
+        CommandView(flowBuilder: command.flow)
             .frame(maxWidth: .infinity)
             .padding(.all, 7)
             .navigationTitle(command.title)

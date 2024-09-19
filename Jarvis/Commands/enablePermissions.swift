@@ -10,7 +10,7 @@ import Combine
 import EventKit
 import CombineExt
 
-func enablePermissionsCommand() -> AnyPublisher<String, Error> {
+func enablePermissionsCommand(_ config: CommandFlowConfig) -> CommandFlow {
     .create { receiver in
         let eventStore = EKEventStore()
         

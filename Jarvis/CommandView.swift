@@ -10,11 +10,12 @@ import Combine
 
 struct CommandView: View {
     
-    var commandFlow: AnyPublisher<String, Error>
+    var flowBuilder: CommandFlowBuilder
     
     @State var lines: [String] = [
         "Ready."
     ]
+    @State var performance: CommandFlowConfig.PerformanceClass = .simulation
     
     @State var cancellables: Set<AnyCancellable> = []
     
@@ -42,19 +43,42 @@ struct CommandView: View {
         .defaultScrollAnchor(.bottom)
         .frame(maxWidth: .infinity)
         .toolbar {
+            ToolbarItem {
+                Menu {
+                    ForEach(CommandFlowConfig.PerformanceClass.allCases) { it in
+                        Button {
+                            performance = it
+                        } label: {
+                            HStack {
+                                if (performance == it) {
+                                    Image(systemName: "checkmark")
+                                }
+                                Text(it.rawValue)
+                            }
+                        }
+                    }
+                } label: {
+                    HStack {
+                        Text(performance.rawValue)
+                    }
+                }
+                .menuStyle(BorderlessButtonMenuStyle())
+            }
             ToolbarItem(placement: .primaryAction) {
                 Button {
-                    commandFlow
-                        .subscribe(on: DispatchQueue.main)
-                        .catch {
-                            Just(
-                                "ERROR: \($0.localizedDescription)"
-                            )
-                        }
-                        .print()
-                        .sink { _ in lines.append("[\(currentTimestamp)] Completed.") }
-                        receiveValue: { lines.append("[\(currentTimestamp)] \($0)") }
-                        .store(in: &cancellables)
+                    flowBuilder(.init(
+                        performanceClass: performance
+                    ))
+                    .subscribe(on: DispatchQueue.main)
+                    .catch {
+                        Just(
+                            "ERROR: \($0.localizedDescription)"
+                        )
+                    }
+                    .print()
+                    .sink { _ in lines.append("[\(currentTimestamp)] Completed.") }
+                    receiveValue: { lines.append("[\(currentTimestamp)] \($0)") }
+                    .store(in: &cancellables)
                 } label: {
                     Image(systemName: "play.fill")
                 }
@@ -70,7 +94,7 @@ struct CommandView: View {
 
 #Preview {
     NavigationStack {
-        CommandView(commandFlow: everySecondTextCommand())
+        CommandView(flowBuilder: everySecondTextCommand)
             .padding(.all, 7)
             .navigationTitle("Random Command")
     }
