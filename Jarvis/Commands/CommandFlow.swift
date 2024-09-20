@@ -19,6 +19,7 @@ struct CommandFlowConfig {
     }
     
     var performanceClass: PerformanceClass = .simulation
+    var shouldSaveLogs: Bool = false
 }
 
 typealias CommandFlowBuilder = (_ config: CommandFlowConfig) -> CommandFlow
