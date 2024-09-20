@@ -56,8 +56,33 @@ private func timebox(_ n: Int,
         .filter { $0.endDate! >= since }
         .filter { $0.startDate! < until }
     
-    guard !blockingEvents.isEmpty else {
-        return []
+    if blockingEvents.isEmpty {
+        // Flow in case there are no scheduled events today
+        var generatedCount = 0
+        var leadingBoundary = since
+        var availableTime = until.timeIntervalSince(leadingBoundary)
+        
+        while availableTime >= minDuration && generatedCount < n {
+            let proposedTime = availableTime <= maxDuration ? availableTime : maxDuration
+            let availableSegmentsCount = Int(proposedTime / minDuration)
+            let totalSessionDuration = minDuration * TimeInterval(availableSegmentsCount)
+            
+            // Slot time
+            generatedCount += 1
+            let box: EKEvent = .new(
+                title: "\(label) #\(generatedCount)",
+                start: leadingBoundary,
+                duration: totalSessionDuration,
+                onStore: store
+            )
+            generatedBoxes.append(box)
+            
+            // Prepare to repeat (if possible)
+            availableTime -= totalSessionDuration
+            leadingBoundary = box.endDate
+        }
+        
+        return generatedBoxes
     }
 
     // TODO: Create method exclusively to arrange correctly events and do unit tests for it
