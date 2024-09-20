@@ -77,9 +77,11 @@ enum CommandScreen: CaseIterable {
         case .duplicateCorporates:
             return duplicateCorporatesCommand
         case .slotTodayPomos:
-            return slotPomosCommand(referenceDate: Date())
+            return slotPomosCommand(startStamp: Date())
         case .slotTomorrowPomos:
-            return slotPomosCommand(referenceDate: Date().oneDayOut)
+            return slotPomosCommand(
+                startStamp: .businessStartOfDay(from: Date().oneDayOut)
+            )
         default:
             return everySecondTextCommand
         }

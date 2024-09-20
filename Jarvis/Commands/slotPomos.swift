@@ -152,11 +152,11 @@ private func save(sessions: [EKEvent], onto store: EKEventStore, usingPrinter pr
     try store.commit()
 }
 
-func slotPomosCommand(referenceDate: Date = Date()) -> CommandFlowBuilder {
+func slotPomosCommand(startStamp: Date = Date()) -> CommandFlowBuilder {
     return { config in
         .create { receiver in
             let store = EKEventStore()
-            let presentEvents = fetchEventsForDay(startingAt: referenceDate, usingStore: store)
+            let presentEvents = fetchEventsForDay(startingAt: startStamp, usingStore: store)
             receiver.send("Found \(presentEvents.count) present blocking events.")
             receiver.send("Blocking Events: -----------------------------")
             for (index, event) in presentEvents.enumerated() {
@@ -165,11 +165,11 @@ func slotPomosCommand(referenceDate: Date = Date()) -> CommandFlowBuilder {
             
             let proposedSessionsA = timebox(7,
                                            labeled: "Session A",
-                                           downSince: .businessStartOfDay(from: referenceDate),
+                                           downSince: startStamp,
                                            within: presentEvents,
                                            minDuration: 30.minutes,
                                            maxDuration: 30.minutes,
-                                           upUntil: .endOfDay(from: referenceDate),
+                                           upUntil: .endOfDay(from: startStamp),
                                            onStore: store)
             
             receiver.send("Proposed Sessions for A: ----------------------------")
@@ -180,11 +180,11 @@ func slotPomosCommand(referenceDate: Date = Date()) -> CommandFlowBuilder {
             
             let proposedSessionsB = timebox(7,
                                            labeled: "Session B",
-                                           downSince: .businessStartOfDay(from: referenceDate),
+                                           downSince: startStamp,
                                            within: presentEvents + proposedSessionsA,
                                            minDuration: 30.minutes,
                                            maxDuration: 30.minutes,
-                                           upUntil: .endOfDay(from: referenceDate),
+                                           upUntil: .endOfDay(from: startStamp),
                                            onStore: store)
             
             receiver.send("Proposed Sessions for B: ----------------------------")
