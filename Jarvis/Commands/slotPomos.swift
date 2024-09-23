@@ -165,10 +165,25 @@ func slotPomosCommand(startStamp: Date = Date()) -> CommandFlowBuilder {
                 event.print(index, usingPrinter: receiver.send)
             }
             
+            let proposedSessionsR = timebox(1,
+                                           labeled: "Get Ready",
+                                           downSince: startStamp,
+                                           within: presentEvents,
+                                           minDuration: 30.minutes,
+                                           maxDuration: 30.minutes,
+                                           upUntil: .endOfDay(from: startStamp),
+                                           onStore: store)
+            
+            receiver.send("Proposed Sessions for Getting Ready: ----------------------------")
+            for (index, session) in proposedSessionsR.enumerated() {
+                session.calendar = store.defaultCalendarForNewEvents
+                session.print(index, usingPrinter: receiver.send)
+            }
+            
             let proposedSessionsA = timebox(7,
                                            labeled: "Session A",
                                            downSince: startStamp,
-                                           within: presentEvents,
+                                           within: presentEvents + proposedSessionsR,
                                            minDuration: 30.minutes,
                                            maxDuration: 30.minutes,
                                            upUntil: .endOfDay(from: startStamp),
@@ -183,7 +198,7 @@ func slotPomosCommand(startStamp: Date = Date()) -> CommandFlowBuilder {
             let proposedSessionsB = timebox(7,
                                            labeled: "Session B",
                                            downSince: startStamp,
-                                           within: presentEvents + proposedSessionsA,
+                                           within: presentEvents + proposedSessionsR + proposedSessionsA,
                                            minDuration: 30.minutes,
                                            maxDuration: 30.minutes,
                                            upUntil: .endOfDay(from: startStamp),
@@ -197,7 +212,7 @@ func slotPomosCommand(startStamp: Date = Date()) -> CommandFlowBuilder {
             
             if config.performanceClass == .execution {
                 do {
-                    try save(sessions: proposedSessionsA + proposedSessionsB, onto: store, usingPrinter: receiver.send)
+                    try save(sessions: proposedSessionsR + proposedSessionsA + proposedSessionsB, onto: store, usingPrinter: receiver.send)
                 } catch {
                     receiver.send(completion: .failure(JarvisError.nestedError(error)))
                 }
