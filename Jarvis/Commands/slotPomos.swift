@@ -52,6 +52,7 @@ private func timebox(_ n: Int,
     // Ensure events are filtered
     let blockingEvents: [EKEvent] = events
         .filter(\.isBlocking)
+        .filter { !$0.isAllDay }
         .filter { $0.endDate != nil && $0.startDate != nil }
         .filter { $0.endDate! >= since }
         .filter { $0.startDate! < until }
@@ -157,6 +158,7 @@ func slotPomosCommand(startStamp: Date = Date()) -> CommandFlowBuilder {
         .create { receiver in
             let store = EKEventStore()
             let presentEvents = fetchEventsForDay(startingAt: startStamp, usingStore: store)
+                .filter { $0.isAllDay == false }
             receiver.send("Found \(presentEvents.count) present blocking events.")
             receiver.send("Blocking Events: -----------------------------")
             for (index, event) in presentEvents.enumerated() {
