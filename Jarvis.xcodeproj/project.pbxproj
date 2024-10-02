@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B6DAC3F2CADC51500780D29 /* JarvisLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6DAC372CADC51500780D29 /* JarvisLib.framework */; };
+		2B6DAC4A2CADC51500780D29 /* JarvisLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6DAC372CADC51500780D29 /* JarvisLib.framework */; };
+		2B6DAC4B2CADC51500780D29 /* JarvisLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6DAC372CADC51500780D29 /* JarvisLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2B6DAC542CADC54300780D29 /* JarvisLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6DAC372CADC51500780D29 /* JarvisLib.framework */; };
+		2B6DAC552CADC54300780D29 /* JarvisLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6DAC372CADC51500780D29 /* JarvisLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2B6DAC5F2CADC5F400780D29 /* CombineExt in Frameworks */ = {isa = PBXBuildFile; productRef = 2B6DAC5E2CADC5F400780D29 /* CombineExt */; };
+		2B6DAC612CADC60800780D29 /* BankaiCore in Frameworks */ = {isa = PBXBuildFile; productRef = 2B6DAC602CADC60800780D29 /* BankaiCore */; };
 		2B78D8472C9BEB8F00E1E869 /* BankaiCore in Frameworks */ = {isa = PBXBuildFile; productRef = 2B78D8462C9BEB8F00E1E869 /* BankaiCore */; };
 		2B78D8562C9C021100E1E869 /* CombineExt in Frameworks */ = {isa = PBXBuildFile; productRef = 2B78D8552C9C021100E1E869 /* CombineExt */; };
 /* End PBXBuildFile section */
@@ -26,6 +33,34 @@
 			remoteGlobalIDString = 2B01A1F72C9BE9F50001DA87;
 			remoteInfo = Jarvis;
 		};
+		2B6DAC402CADC51500780D29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2B01A1F02C9BE9F50001DA87 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2B6DAC362CADC51500780D29;
+			remoteInfo = JarvisLib;
+		};
+		2B6DAC422CADC51500780D29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2B01A1F02C9BE9F50001DA87 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2B01A1F72C9BE9F50001DA87;
+			remoteInfo = Jarvis;
+		};
+		2B6DAC482CADC51500780D29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2B01A1F02C9BE9F50001DA87 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2B6DAC362CADC51500780D29;
+			remoteInfo = JarvisLib;
+		};
+		2B6DAC562CADC54300780D29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2B01A1F02C9BE9F50001DA87 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2B6DAC362CADC51500780D29;
+			remoteInfo = JarvisLib;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,6 +73,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		2B6DAC502CADC51500780D29 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2B6DAC4B2CADC51500780D29 /* JarvisLib.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B6DAC582CADC54300780D29 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2B6DAC552CADC54300780D29 /* JarvisLib.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -46,9 +103,18 @@
 		2B01A2132C9BE9F60001DA87 /* JarvisUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JarvisUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B01A2262C9BEAA50001DA87 /* BankaiCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BankaiCore; path = ../Bankai/Swift/BankaiCore; sourceTree = "<group>"; };
 		2B6DAC272CADBDA100780D29 /* jarvis-cli */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "jarvis-cli"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B6DAC372CADC51500780D29 /* JarvisLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JarvisLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B6DAC3E2CADC51500780D29 /* JarvisLibTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JarvisLibTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		2B6DAC4F2CADC51500780D29 /* Exceptions for "JarvisLib" folder in "JarvisLib" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			publicHeaders = (
+				JarvisLib.h,
+			);
+			target = 2B6DAC362CADC51500780D29 /* JarvisLib */;
+		};
 		2B78D8532C9BFF3F00E1E869 /* Exceptions for "Jarvis" folder in "Jarvis" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -82,6 +148,19 @@
 			path = "jarvis-cli";
 			sourceTree = "<group>";
 		};
+		2B6DAC382CADC51500780D29 /* JarvisLib */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				2B6DAC4F2CADC51500780D29 /* Exceptions for "JarvisLib" folder in "JarvisLib" target */,
+			);
+			path = JarvisLib;
+			sourceTree = "<group>";
+		};
+		2B6DAC442CADC51500780D29 /* JarvisLibTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = JarvisLibTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +168,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B6DAC4A2CADC51500780D29 /* JarvisLib.framework in Frameworks */,
 				2B78D8562C9C021100E1E869 /* CombineExt in Frameworks */,
 				2B78D8472C9BEB8F00E1E869 /* BankaiCore in Frameworks */,
 			);
@@ -112,6 +192,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B6DAC542CADC54300780D29 /* JarvisLib.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B6DAC342CADC51500780D29 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B6DAC5F2CADC5F400780D29 /* CombineExt in Frameworks */,
+				2B6DAC612CADC60800780D29 /* BankaiCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B6DAC3B2CADC51500780D29 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B6DAC3F2CADC51500780D29 /* JarvisLib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +224,8 @@
 				2B01A20C2C9BE9F60001DA87 /* JarvisTests */,
 				2B01A2162C9BE9F60001DA87 /* JarvisUITests */,
 				2B6DAC282CADBDA100780D29 /* jarvis-cli */,
+				2B6DAC382CADC51500780D29 /* JarvisLib */,
+				2B6DAC442CADC51500780D29 /* JarvisLibTests */,
 				2B78D8452C9BEB8F00E1E869 /* Frameworks */,
 				2B01A1F92C9BE9F50001DA87 /* Products */,
 			);
@@ -138,6 +238,8 @@
 				2B01A2092C9BE9F60001DA87 /* JarvisTests.xctest */,
 				2B01A2132C9BE9F60001DA87 /* JarvisUITests.xctest */,
 				2B6DAC272CADBDA100780D29 /* jarvis-cli */,
+				2B6DAC372CADC51500780D29 /* JarvisLib.framework */,
+				2B6DAC3E2CADC51500780D29 /* JarvisLibTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -151,6 +253,16 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		2B6DAC322CADC51500780D29 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		2B01A1F72C9BE9F50001DA87 /* Jarvis */ = {
 			isa = PBXNativeTarget;
@@ -159,10 +271,12 @@
 				2B01A1F42C9BE9F50001DA87 /* Sources */,
 				2B01A1F52C9BE9F50001DA87 /* Frameworks */,
 				2B01A1F62C9BE9F50001DA87 /* Resources */,
+				2B6DAC502CADC51500780D29 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2B6DAC492CADC51500780D29 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				2B01A1FA2C9BE9F50001DA87 /* Jarvis */,
@@ -229,10 +343,12 @@
 				2B6DAC232CADBDA100780D29 /* Sources */,
 				2B6DAC242CADBDA100780D29 /* Frameworks */,
 				2B6DAC252CADBDA100780D29 /* CopyFiles */,
+				2B6DAC582CADC54300780D29 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2B6DAC572CADC54300780D29 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				2B6DAC282CADBDA100780D29 /* jarvis-cli */,
@@ -243,6 +359,55 @@
 			productName = "jarvis-cli";
 			productReference = 2B6DAC272CADBDA100780D29 /* jarvis-cli */;
 			productType = "com.apple.product-type.tool";
+		};
+		2B6DAC362CADC51500780D29 /* JarvisLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B6DAC4C2CADC51500780D29 /* Build configuration list for PBXNativeTarget "JarvisLib" */;
+			buildPhases = (
+				2B6DAC322CADC51500780D29 /* Headers */,
+				2B6DAC332CADC51500780D29 /* Sources */,
+				2B6DAC342CADC51500780D29 /* Frameworks */,
+				2B6DAC352CADC51500780D29 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				2B6DAC382CADC51500780D29 /* JarvisLib */,
+			);
+			name = JarvisLib;
+			packageProductDependencies = (
+				2B6DAC5E2CADC5F400780D29 /* CombineExt */,
+				2B6DAC602CADC60800780D29 /* BankaiCore */,
+			);
+			productName = JarvisLib;
+			productReference = 2B6DAC372CADC51500780D29 /* JarvisLib.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		2B6DAC3D2CADC51500780D29 /* JarvisLibTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B6DAC512CADC51500780D29 /* Build configuration list for PBXNativeTarget "JarvisLibTests" */;
+			buildPhases = (
+				2B6DAC3A2CADC51500780D29 /* Sources */,
+				2B6DAC3B2CADC51500780D29 /* Frameworks */,
+				2B6DAC3C2CADC51500780D29 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2B6DAC412CADC51500780D29 /* PBXTargetDependency */,
+				2B6DAC432CADC51500780D29 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				2B6DAC442CADC51500780D29 /* JarvisLibTests */,
+			);
+			name = JarvisLibTests;
+			packageProductDependencies = (
+			);
+			productName = JarvisLibTests;
+			productReference = 2B6DAC3E2CADC51500780D29 /* JarvisLibTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -269,6 +434,13 @@
 						CreatedOnToolsVersion = 16.0;
 						LastSwiftMigration = 1600;
 					};
+					2B6DAC362CADC51500780D29 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					2B6DAC3D2CADC51500780D29 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 2B01A1F72C9BE9F50001DA87;
+					};
 				};
 			};
 			buildConfigurationList = 2B01A1F32C9BE9F50001DA87 /* Build configuration list for PBXProject "Jarvis" */;
@@ -292,6 +464,8 @@
 				2B01A2082C9BE9F60001DA87 /* JarvisTests */,
 				2B01A2122C9BE9F60001DA87 /* JarvisUITests */,
 				2B6DAC262CADBDA100780D29 /* jarvis-cli */,
+				2B6DAC362CADC51500780D29 /* JarvisLib */,
+				2B6DAC3D2CADC51500780D29 /* JarvisLibTests */,
 			);
 		};
 /* End PBXProject section */
@@ -312,6 +486,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2B01A2112C9BE9F60001DA87 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B6DAC352CADC51500780D29 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B6DAC3C2CADC51500780D29 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -349,6 +537,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2B6DAC332CADC51500780D29 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B6DAC3A2CADC51500780D29 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -361,6 +563,26 @@
 			isa = PBXTargetDependency;
 			target = 2B01A1F72C9BE9F50001DA87 /* Jarvis */;
 			targetProxy = 2B01A2142C9BE9F60001DA87 /* PBXContainerItemProxy */;
+		};
+		2B6DAC412CADC51500780D29 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2B6DAC362CADC51500780D29 /* JarvisLib */;
+			targetProxy = 2B6DAC402CADC51500780D29 /* PBXContainerItemProxy */;
+		};
+		2B6DAC432CADC51500780D29 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2B01A1F72C9BE9F50001DA87 /* Jarvis */;
+			targetProxy = 2B6DAC422CADC51500780D29 /* PBXContainerItemProxy */;
+		};
+		2B6DAC492CADC51500780D29 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2B6DAC362CADC51500780D29 /* JarvisLib */;
+			targetProxy = 2B6DAC482CADC51500780D29 /* PBXContainerItemProxy */;
+		};
+		2B6DAC572CADC54300780D29 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2B6DAC362CADC51500780D29 /* JarvisLib */;
+			targetProxy = 2B6DAC562CADC54300780D29 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -634,6 +856,108 @@
 			};
 			name = Release;
 		};
+		2B6DAC4D2CADC51500780D29 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = AQUE4FE98B;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = io.zheref.JarvisLib;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		2B6DAC4E2CADC51500780D29 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = AQUE4FE98B;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = io.zheref.JarvisLib;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		2B6DAC522CADC51500780D29 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AQUE4FE98B;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.zheref.JarvisLibTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Jarvis.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Jarvis";
+			};
+			name = Debug;
+		};
+		2B6DAC532CADC51500780D29 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AQUE4FE98B;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.zheref.JarvisLibTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Jarvis.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Jarvis";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -682,6 +1006,24 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		2B6DAC4C2CADC51500780D29 /* Build configuration list for PBXNativeTarget "JarvisLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B6DAC4D2CADC51500780D29 /* Debug */,
+				2B6DAC4E2CADC51500780D29 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2B6DAC512CADC51500780D29 /* Build configuration list for PBXNativeTarget "JarvisLibTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B6DAC522CADC51500780D29 /* Debug */,
+				2B6DAC532CADC51500780D29 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -696,6 +1038,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2B6DAC5E2CADC5F400780D29 /* CombineExt */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B78D8542C9C01C200E1E869 /* XCRemoteSwiftPackageReference "CombineExt" */;
+			productName = CombineExt;
+		};
+		2B6DAC602CADC60800780D29 /* BankaiCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BankaiCore;
+		};
 		2B78D8462C9BEB8F00E1E869 /* BankaiCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BankaiCore;

@@ -89,7 +89,7 @@ extension Array where Element == EKEvent {
     }
 }
 
-func duplicateCorporatesCommand(_ config: CommandFlowConfig) -> CommandFlow {
+public func duplicateCorporatesCommand(_ config: CommandFlowConfig) -> CommandFlow {
     .create { receiver in
         let store = EKEventStore()
         receiver.send("Fetching events for today...")

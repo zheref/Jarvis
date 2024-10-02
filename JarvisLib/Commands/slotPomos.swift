@@ -153,7 +153,7 @@ private func save(sessions: [EKEvent], onto store: EKEventStore, usingPrinter pr
     try store.commit()
 }
 
-func slotPomosCommand(startStamp: Date = Date()) -> CommandFlowBuilder {
+public func slotPomosCommand(startStamp: Date = Date()) -> CommandFlowBuilder {
     return { config in
         .create { receiver in
             let store = EKEventStore()

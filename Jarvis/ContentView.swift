@@ -8,18 +8,7 @@
 import BankaiCore
 import Combine
 import SwiftUI
-
-enum JarvisError: Error {
-    case stringError(String)
-    case nestedError(any Error)
-    
-    var localizedDescription: String {
-        switch self {
-        case .stringError(let string): return string
-        case .nestedError(let error): return error.localizedDescription
-        }
-    }
-}
+import JarvisLib
 
 func voidCommand() -> AnyPublisher<String, Error> {
     return .create { receiver in
