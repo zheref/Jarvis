@@ -31,7 +31,7 @@ struct JarvisCLI {
                               shouldSaveLogs: true)
         )
         
-        enablePermissionsCF
+        let sub1 = enablePermissionsCF
             .subscribe(on: RunLoop.main)
             .catch {
                 Just(
@@ -41,11 +41,20 @@ struct JarvisCLI {
             .print()
             .sink { _ in print("[\(currentTimestamp)] Completed.") }
             receiveValue: { print("[\(currentTimestamp)] \($0)") }
-            .store(in: &disposeBag)
+            
+        sub1.store(in: &disposeBag)
         
+        let sub2 = duplicateCorporatesCommand(.init(
+            performanceClass: .simulation,
+            shouldSaveLogs: true
+        ))
         
         print("Staying in the loop...")
-        RunLoop.main.run(until: .distantFuture)
+//        RunLoop.main.run(until: .distantFuture)
         print("Ended the loop.")
+        
+        withExtendedLifetime(sub1) {
+            RunLoop.main.run(until: .distantFuture)
+        }
     }
 }
